@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# OS / editor
+desktop.ini
+Thumbs.db
+.DS_Store
+.idea/
+.vscode/
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+
+# Runtime data (ajustar conforme o app crescer)
+tmp/
+cache/
+dist/
+build/
+
+# Documentos de governança local (podem ser recriados/ajustados fora do versionamento inicial)
+assets/checklist_funcionalidades.txt
+assets/pendencias.txt
+assets/componentes_sistema.txt

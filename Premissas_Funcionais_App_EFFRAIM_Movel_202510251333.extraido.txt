@@ -1,0 +1,52 @@
+===== STREAM 1 =====
+Premissas Funcionais — App EFFRAIM Móvel
+(WebView para Eproc)
+PF-01 — Camada adaptativa de apresentação
+O aplicativo atua como camada de apresentação sobre o Eproc, carregando suas páginas originais
+em WebView e modificando o DOM apenas para reorganização visual. Não altera conteúdo,
+autenticação nem lógica do sistema.
+PF-02 — Detecção automática de contexto
+Identifica o módulo ativo do Eproc pela URL e aplica o script correspondente, garantindo que cada
+tipo de página receba o layout otimizado.
+PF-03 — Modificação dinâmica do DOM
+Injeta scripts JavaScript para modificar a estrutura da página em tempo real, reorganizando,
+ocultando ou estilizando elementos, sem afetar a funcionalidade original.
+PF-04 — Reorganização visual adaptativa
+Aplica layout responsivo que converte menus e botões do Eproc para navegação móvel. Menus
+superiores
+®
+laterais expansíveis. Botões de ação
+®
+barra inferior fixa. Oculta redundâncias e
+ajusta espaçamentos e fontes.
+PF-04.1 — Adaptação por tipo de dispositivo
+Detecta automaticamente celular ou tablet, aplicando: Celular: menus inferiores e fluxo vertical.
+Tablet: menus laterais e painéis divididos.
+PF-05 — Persistência de preferências do usuário
+Armazena preferências locais (última página, tema, idioma, modo de navegação) e restaura
+automaticamente em novas sessões.
+PF-06 — Controles nativos sobrepostos
+Cria camada de interface nativa sobre o WebView com botões e menus independentes do DOM,
+como barra inferior, botão flutuante EFFRAIM e atalhos configuráveis.
+PF-07 — Comunicação entre camada nativa e scripts do WebView
+Mantém canal bidirecional entre o app e o conteúdo WebView para troca segura de comandos e
+eventos via postMessage e JSON.
+PF-08 — Gerenciamento modular de scripts injetáveis
+===== STREAM 2 =====
+Organiza as adaptações em módulos independentes, carregados conforme o contexto da página,
+com funções de inicialização e descarte para evitar conflitos.
+PF-09 — Estrutura de cache e armazenamento permanente
+Mantém dois níveis de armazenamento: 1. Cache leve (volátil): histórico temporário da sessão. 2.
+Armazenamento permanente: objetos e documentos necessários ao carregamento otimizado, com
+índice por processo. Inclui painel para o usuário excluir processos e arquivos específicos.
+PF-10 — Notificações locais e lembretes processuais (Prioridade
+2)
+Permite notificações locais e lembretes de prazos, exibidos pelo sistema do dispositivo,
+configuráveis e gerenciáveis em painel próprio. Implementação pós-estruturação.
+PF-11 — Tratamento unificado de módulos internos e janelas
+auxiliares (Versão futura)
+Detecta pop-ups e iframes do Eproc e os exibe no mesmo contexto do WebView, mantendo a
+coerência da navegação.
+PF-12 — Compatibilidade e integração com a extensão EFFRAIM
+Mantém arquitetura compatível com a extensão EFFRAIM, permitindo reutilização dos módulos
+JavaScript e sincronização de atualizações entre desktop e app.
