@@ -1,0 +1,50 @@
+CHECKLIST DE SISTEMA (EFFRAIM-M)
+
+0) LEITURA OBRIGATORIA
+- Ler `documentacao_sistema/componentes_sistema.txt` antes de analisar, planejar ou implementar qualquer item.
+- Ao finalizar funcionalidade relevante, atualizar `componentes_sistema.txt` e `pendencias.txt`.
+
+1) ESCOPO E PRINCIPIO
+- Confirmar que a funcionalidade altera apenas camada adaptativa (UI/navegacao), sem mudar regra de negocio do Eproc.
+- Confirmar contexto de pagina por URL antes de injetar qualquer script.
+
+2) ARQUITETURA
+- Separar claramente:
+  - camada nativa do app
+  - bridge nativo <-> webview
+  - scripts web injetados no Eproc
+- Evitar acoplamento direto com APIs da extensao Chrome (EFFRAIM-X).
+
+3) MODULARIDADE
+- Cada modulo de pagina deve ter inicializacao e descarte seguros.
+- Evitar arquivos longos; preferir subpastas por dominio/fluxo.
+- Regra pratica: manter arquivos proximos de 500 linhas; acima disso, refatorar.
+
+4) UX MOVEL
+- Garantir responsividade para celular e tablet.
+- Testar scroll, foco, teclado virtual e sobreposicao de controles nativos.
+- Evitar elementos bloqueando a interacao por z-index/overlay.
+
+5) BRIDGE E EVENTOS
+- Definir contrato de mensagens (tipo, payload, origem, resposta).
+- Logar mensagens criticas de entrada/saida com prefixo padrao.
+- Tratar timeout e cancelamento em chamadas assicronas.
+
+6) PERSISTENCIA
+- Definir o que e cache de sessao vs armazenamento permanente.
+- Manter indice por processo/documento para consulta/limpeza.
+- Evitar crescimento descontrolado de dados locais.
+
+7) COMPATIBILIDADE COM EFFRAIM-X
+- Reusar fluxo/heuristica que ja funciona no X quando aplicavel.
+- Ao adaptar modulo vindo do X, registrar no `componentes_sistema.txt` o que foi mantido e o que mudou.
+
+8) VALIDACAO MINIMA
+- Validar carregamento inicial no WebView.
+- Validar deteccao de contexto por URL.
+- Validar inicializacao e descarte sem erros de console.
+- Validar funcionamento com rede lenta e sem conectividade temporaria.
+
+9) DOCUMENTACAO CONTINUA
+- Atualizar `componentes_sistema.txt` com novos modulos/decisoes.
+- Registrar pendencias novas em `documentacao_sistema/pendencias.txt` (nao no checklist).

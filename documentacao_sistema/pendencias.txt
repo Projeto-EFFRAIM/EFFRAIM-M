@@ -1,0 +1,26 @@
+PENDENCIAS (EFFRAIM-M)
+Atualizado em: 2026-02-28
+
+1) Definir stack oficial do app movel
+- Escolher tecnologia base (Flutter/React Native/Kotlin/Swift + Android/iOS).
+- Definir impacto no modelo de bridge e no reuso de modulos do EFFRAIM-X.
+
+2) Especificar contrato de mensagens da bridge
+- Tipos de mensagem, payload, resposta, timeout e cancelamento.
+- Padrao de log e rastreabilidade.
+
+3) Mapear rotas-alvo do Eproc no movel
+- Priorizar telas mais usadas para primeira onda de adaptacao.
+- Documentar regras de deteccao por URL.
+
+4) Definir estrategia de persistencia
+- Separar cache de sessao e armazenamento permanente.
+- Definir indice por processo/documento e rotina de limpeza.
+
+5) Estruturar base de modulos
+- Criar esqueletos de init/dispose por contexto de pagina.
+- Preparar baseline de testes manuais.
+
+6) Planejar compatibilidade com EFFRAIM-X
+- Identificar modulos reaproveitaveis.
+- Registrar adaptacoes necessarias para ambiente movel.

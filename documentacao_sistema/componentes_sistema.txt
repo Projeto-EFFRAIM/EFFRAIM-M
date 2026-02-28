@@ -1,0 +1,76 @@
+COMPONENTES DO SISTEMA (EFFRAIM-M)
+Atualizado em: 2026-02-28
+
+OBJETIVO
+- Catalogar a arquitetura e os componentes do EFFRAIM-M para reduzir perda de contexto em novos chats.
+
+ESTADO ATUAL DO REPOSITORIO
+- Repo ainda em fase de base/documentacao.
+- Arquivos de referencia presentes:
+  - `Premissas_Funcionais_App_EFFRAIM_Movel_202510251333.pdf`
+  - `Premissas_Funcionais_App_EFFRAIM_Movel_202510251333.extraido.txt`
+  - documentos iniciais em `assets/`
+
+PRINCIPIOS DE ARQUITETURA (DAS PREMISSAS PF-01..PF-12)
+- Camada adaptativa sobre Eproc (sem alterar regras de negocio).
+- Deteccao de contexto por URL para decidir scripts/modulos.
+- Comunicacao nativa <-> WebView por mensagens.
+- Scripts modulares com init/dispose.
+- Persistencia de preferencias + cache/armazenamento por processo.
+- Compatibilidade de abordagem com EFFRAIM-X.
+
+MAPA DE COMPONENTES (ALVO)
+
+1) Bootstrap do App
+- Responsabilidade: iniciar app, abrir WebView, preparar bridge e configuracoes.
+- Entradas: configuracoes do usuario e URL inicial.
+- Saidas: contexto inicial pronto para roteamento.
+
+2) Roteador de Contexto por URL
+- Responsabilidade: identificar tipo de tela Eproc e acionar modulo correto.
+- Entradas: URL atual + metadados de pagina.
+- Saidas: modulo ativo (ou nenhum).
+
+3) Motor de Injecao DOM
+- Responsabilidade: aplicar adaptacoes visuais/comportamentais na pagina.
+- Entradas: contexto de rota e configuracoes.
+- Saidas: UI adaptada de forma reversivel.
+
+4) Camada de UI Nativa
+- Responsabilidade: barra inferior, botao flutuante, acoes nativas.
+- Entradas: estado atual do WebView e preferencias.
+- Saidas: controles persistentes para navegacao/atalhos.
+
+5) Bridge Nativo-WebView
+- Responsabilidade: troca de mensagens e comandos.
+- Entradas: eventos do app e eventos da pagina.
+- Saidas: chamadas sincronizadas com tratamento de erro/timeout.
+
+6) Preferencias do Usuario
+- Responsabilidade: salvar opcoes de UX e comportamento.
+- Entradas: alteracoes do usuario.
+- Saidas: configuracoes persistidas e reaplicadas na inicializacao.
+
+7) Cache e Armazenamento
+- Responsabilidade: dados temporarios de sessao e dados permanentes por processo.
+- Entradas: dados capturados e resultados de consulta.
+- Saidas: leitura rapida, limpeza e governanca de crescimento.
+
+8) Modulos Funcionais por Dominio
+- Responsabilidade: encapsular funcionalidades (consultas, paineis, listas).
+- Entradas: contexto + dados da pagina.
+- Saidas: comportamento funcional isolado por modulo.
+
+9) Tutoriais e Ajuda
+- Responsabilidade: guiar uso funcional sem expor detalhes internos.
+- Entradas: contexto de tela e estado da funcionalidade.
+- Saidas: onboarding e suporte de operacao.
+
+PADROES OPERACIONAIS
+- Nomear preferencialmente em portugues.
+- Evitar arquivos grandes sem divisao por responsabilidade.
+- Sempre registrar decisoes estruturais relevantes aqui.
+- Pendencias de produto/execucao devem ir para `documentacao_sistema/pendencias.txt`.
+
+PROXIMO PASSO ESTRUTURAL RECOMENDADO
+- Definir stack-alvo oficial (Flutter/React Native/Kotlin etc.) para detalhar a implementacao concreta desses componentes.
